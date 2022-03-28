@@ -1,0 +1,53 @@
+<h1><%=title %></h1>
+<div>
+  <form action="" method="POST">
+    <div>
+      <label for="firstname">First Name:</label>
+      <input
+        type="text"
+        id="firstname"
+        name="firstname"
+        value="<% typeof user == 'undefined'? '': user.firstname%>"
+      />
+    </div>
+    <div>
+      <label for="familyname">Family Name:</label>
+      <input
+        type="text"
+        id="familyname"
+        name="familyname"
+        value="<% typeof user == 'undefined'? '': user.familyname%>"
+      />
+    </div>
+    <div>
+      <label for="username">User Name:</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        value="<% typeof user == 'undefined'? '': user.username%>"
+      />
+      <% if (typeof error != 'undefined'){ %>
+      <p><%= error %></p>
+      <% } %>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" />
+    </div>
+    <div>
+      <label for="passwordConfirm">Confirm Password:</label>
+      <input type="password" id="passwordConfirm" name="passwordConfirm" />
+    </div>
+    <button type="submit">Signup</button>
+    <a href="/"><button type="button">Cancel</button></a>
+  </form>
+</div>
+
+<% if(typeof errors !='undefined'){ %>
+<div>
+  <% errors.forEach(err=>{%>
+  <p><%=err.msg %></p>
+  <% }) %>
+</div>
+<% } %>
