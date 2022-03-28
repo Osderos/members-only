@@ -1,5 +1,5 @@
 const { body, validationResult } = require("express-validator");
-
+const passport = require("passport");
 const User = require("../models/user");
 
 exports.signup_get = (req, res) => {
@@ -73,3 +73,13 @@ exports.signup_post = [
     }
   },
 ];
+
+exports.login_get = (req, res) => {
+  res.render("login_form", { title: "Login" });
+};
+
+exports.login_post = passport.authenticate("local", {
+  successRedirect: "/",
+  failureRedirect: "/login",
+  failureFlash: true,
+});
