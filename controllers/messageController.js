@@ -3,6 +3,19 @@ const { body, validationResult } = require("express-validator");
 const Message = require("../models/message");
 const User = require("../models/user");
 
+exports.index = async (req, res, next) => {
+  try{
+const messages = await Message.find({}).sort({date:1})
+if(!messages){
+  return next('No messages found')
+}
+res.render('index', {title:'MembersOnly', user:req.user, messages: messages})
+  }catch(err){ 
+    return next(err)
+  }
+ 
+};
+
 exports.message_get = (req, res, next) => {
   res.render("message_form", { title: "New Message" });
 };
@@ -38,7 +51,7 @@ exports.message_post = [
         if (err) {
           return next(err);
         }
-        res.redirect("index", {message:message});
+        res.redirect("/");
       });
     }
   },

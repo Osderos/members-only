@@ -30,22 +30,15 @@ app.set("view engine", "ejs");
 passport.use(
   new LocalStrategy((username, password, done) => {
     User.findOne({ username: username }, (err, user) => {
-      if (err) {
-        return done(err);
-      }
-      if (!user) {
-        return done(null, false, { message: "Incorrect username" });
-      }
-      if (user.password !== password) {
-        bcrypt.compare(password, user.password, (err, result) => {
-          if (result) {
-            return done(null, user);
-          } else {
-            return done(null, false, { message: "Incorrect password" });
-          }
-        });
-      }
-      return done(null, user);
+      if (err) return done(err);
+      if (!user) return done(null, false, { message: "Incorrect username" });
+      bcrypt.compare(password, user.password, (err, res) => {
+        if (err) return done(err);
+        // Passwords match, log user in!
+        if (res) return done(null, user);
+        // Passwords do not match!
+        else return done(null, false, { message: "Incorrect password" });
+      });
     });
   })
 );

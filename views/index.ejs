@@ -8,34 +8,48 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
 
-    <% if(user){ %>
-    <p>Hi there <%= user.username %></p>
-    <% if(user.isMember){%>
-    <p>You are a member!</p>
+    <% if(user && user.isMember){ %>
+    <p>Member</p>
     <a href="/message">Create new message</a>
-    <% }else{ %>
-    <a href="/message">Create new message</a>
-    <a href="/member">Become a member</a>
-    <% } %>
-
     <a href="/logout">Logout</a>
-
-    <% }else{ %>
-    <p>Hi guest</p>
-    <a href="/signup">Signup</a>
-    <a href="/login">Login</a>
-
-    <% } %>
-
     <div>
       <% messages.forEach(message=>{ %>
       <div>
         <h1><%= message.title %></h1>
-        <span><%= message.user.username %> </span>
-        <span><%= message.date_formated %> </span>
         <p><%= message.text %></p>
+        <span>Posted by: <%= message.user.username %> </span>
+        <span>On: <%= message.date_formated %> </span>
       </div>
       <% }) %>
     </div>
+    <% }else if(user && !user.isMember){ %>
+      <p>Hi there <%= user.username %></p>
+      <a href="/message">Create new message</a>
+      <a href="/member">Become a member</a>
+      <a href="/logout">Logout</a>
+      <div>
+        <% messages.forEach(message=>{ %>
+        <div>
+          <h1><%= message.title %></h1>
+          <span>Posted by: Private</span>
+          <span>On: Private </span>
+          <p><%= message.text %></p>
+        </div>
+        <% }) %>
+      </div>
+      <% }else{ %>
+      <a href="/signup">Signup</a>
+      <a href="/login">Login</a>
+      <div>
+        <% messages.forEach(message=>{ %>
+        <div>
+          <h1><%= message.title %></h1>
+          <p><%= message.text %></p>
+          <span>Posted by: Private</span>
+          <span>On: Private </span>
+        </div>
+        <% }) %>
+      </div>
+<% } %> 
   </body>
 </html>
