@@ -30,4 +30,7 @@ router.post(
   authentication_controller.login_post
 );
 
+//LOGOUT
+router.get('/logout', authentication_controller.logout_get)
+
 module.exports = router;
