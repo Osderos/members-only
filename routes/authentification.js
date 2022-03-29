@@ -31,6 +31,18 @@ router.post(
 );
 
 //LOGOUT
-router.get('/logout', authentication_controller.logout_get)
+router.get("/logout", authentication_controller.logout_get);
+
+//MEMBER
+router.get(
+  "/member",
+  checkAuth.checkMember,
+  authentication_controller.member_get
+);
+router.post(
+  "/member",
+  checkAuth.checkMember,
+  authentication_controller.member_post
+);
 
 module.exports = router;

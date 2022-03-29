@@ -10,7 +10,14 @@
 
     <% if(user){ %>
     <p>Hi there <%= user.username %></p>
+    <% if(user.isMember){%>
+    <p>You are a member!</p>
+    <% }else{ %>
+    <a href="/member">Become a member</a>
+    <% } %>
+
     <a href="/logout">Logout</a>
+
     <% }else{ %>
     <p>Hi guest</p>
     <a href="/signup">Signup</a>

@@ -1,6 +1,7 @@
 const { body, validationResult } = require("express-validator");
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
+require("dotenv").config();
 const User = require("../models/user");
 
 exports.signup_get = (req, res) => {
@@ -93,3 +94,41 @@ exports.logout_get = (req, res) => {
   req.logout();
   res.redirect("/");
 };
+
+exports.member_get = (req, res) => {
+  res.render("member_form", { title: "Become a member" });
+};
+
+exports.member_post = [
+  body("answer").custom((value, { req }) => {
+    if (process.env.MEMBER_PASS != req.body.answer) {
+      throw new Error("Wrong anser, try again!");
+    }
+    return true;
+  }),
+
+  (req, res, next) => {
+    console.log(res.locals.currentUser);
+    console.log(req.body);
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      res.render("member_form", {
+        title: "Become a member",
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      User.findByIdAndUpdate(
+        res.locals.currentUser._id,
+        { $set: { isMember: true } },
+        function (err) {
+          if (err) {
+            return next(err);
+          }
+          res.redirect("/");
+        }
+      );
+    }
+  },
+];

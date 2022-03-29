@@ -1,0 +1,19 @@
+<h1><%= title %></h1>
+<h2>To become a member you need to figure the riddle bellow</h2>
+<p>
+  You walk into a room and see a bed. On the bed, there are two dogs, five cats,
+  a giraffe, six cows, and a goose. There are also three doves flying above the
+  bed.
+</p>
+<div>
+  <form action="" method="POST">
+    <label for="anwser">How many legs are on the floor?</label>
+    <input type="text" id="answer" name="answer" required />
+    <button type="submit">Submit</button>
+    <a href="/"><button type="button">Cancel</button></a>
+  </form>
+</div>
+
+<% if(typeof errors != 'undefined'){ %> <% errors.forEach(error =>{ %>
+<p><%= error.msg %> </p>
+<% }) %> <% } %>
