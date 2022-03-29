@@ -23,33 +23,38 @@
       <% }) %>
     </div>
     <% }else if(user && !user.isMember){ %>
-      <p>Hi there <%= user.username %></p>
-      <a href="/message">Create new message</a>
-      <a href="/member">Become a member</a>
-      <a href="/logout">Logout</a>
+    <p>Hi there <%= user.username %></p>
+    <a href="/message">Create new message</a>
+    <a href="/member">Become a member</a>
+    <a href="/logout">Logout</a>
+
+    <div>
+      <% messages.forEach(message=>{ %>
       <div>
-        <% messages.forEach(message=>{ %>
-        <div>
-          <h1><%= message.title %></h1>
-          <span>Posted by: Private</span>
-          <span>On: Private </span>
-          <p><%= message.text %></p>
-        </div>
-        <% }) %>
+        <h1><%= message.title %></h1>
+
+        <p><%= message.text %></p>
+        <span>Posted by: Private</span>
+        <span>On: Private </span>
+        <% if(user.isAdmin){ %>
+        <p>ADMIN</p>
+        <% } %>
       </div>
-      <% }else{ %>
-      <a href="/signup">Signup</a>
-      <a href="/login">Login</a>
+      <% }) %>
+    </div>
+    <% }else{ %>
+    <a href="/signup">Signup</a>
+    <a href="/login">Login</a>
+    <div>
+      <% messages.forEach(message=>{ %>
       <div>
-        <% messages.forEach(message=>{ %>
-        <div>
-          <h1><%= message.title %></h1>
-          <p><%= message.text %></p>
-          <span>Posted by: Private</span>
-          <span>On: Private </span>
-        </div>
-        <% }) %>
+        <h1><%= message.title %></h1>
+        <p><%= message.text %></p>
+        <span>Posted by: Private</span>
+        <span>On: Private </span>
       </div>
-<% } %> 
+      <% }) %>
+    </div>
+    <% } %>
   </body>
 </html>

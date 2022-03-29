@@ -34,6 +34,9 @@ exports.signup_post = [
 
   async (req, res, next) => {
     const errors = validationResult(req);
+
+    const admin = req.body.admin === "on" ? true : false;
+
     try {
       const hash = await bcrypt.hash(req.body.password, 10);
       const user = new User({
@@ -41,8 +44,9 @@ exports.signup_post = [
         familyname: req.body.familyname,
         username: req.body.username,
         password: hash,
+        isAdmin: admin,
       });
-
+      console.log(user);
       if (!errors.isEmpty()) {
         res.render("signup_form", {
           title: "Sign Up",

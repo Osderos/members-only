@@ -7,7 +7,7 @@ const UserSchema = new Schema({
   username: { type: String, required: true, minlength: 1 },
   password: { type: String, required: true, minlength: 6 },
   isMember: { type: Boolean, required: true, default: false },
-  
+  isAdmin: { type: Boolean, required: true, default: false },
 });
 
 UserSchema.virtual("fullname").get(function () {
@@ -18,4 +18,4 @@ UserSchema.virtual("url").get(function () {
   return `/user/${this._id}`;
 });
 
-module.exports = mongoose.model('User', UserSchema)
+module.exports = mongoose.model("User", UserSchema);

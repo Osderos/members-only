@@ -8,12 +8,12 @@ const checkAuth = require("../middleware/checkAuth");
 
 router.get(
   "/signup",
-  checkAuth.checkNotAuthenticated,
+  // checkAuth.checkNotAuthenticated,
   authentication_controller.signup_get
 );
 router.post(
   "/signup",
-  checkAuth.checkNotAuthenticated,
+  // checkAuth.checkNotAuthenticated,
   authentication_controller.signup_post
 );
 
@@ -36,14 +36,14 @@ router.get("/logout", authentication_controller.logout_get);
 //MEMBER
 router.get(
   "/member",
-  checkAuth.checkAuthenticated,
-  checkAuth.checkMember,
+  // checkAuth.checkAuthenticated,
+  // checkAuth.checkMember,
   authentication_controller.member_get
 );
 router.post(
   "/member",
   
-  checkAuth.checkMember,
+  // checkAuth.checkMember,
   authentication_controller.member_post
 );
 
