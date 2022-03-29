@@ -1,11 +1,24 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
-const checkAuth = require('../middleware/checkAuth')
+const checkAuth = require("../middleware/checkAuth");
+const message_controller = require("../controllers/messageController");
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Members-Only', user: req.user });
+router.get("/", function (req, res, next) {
+  res.render("index", { title: "Members-Only", user: req.user });
 });
+
+// MESSAGE ROUTES
+router.get(
+  "/message",
+  // checkAuth.checkAuthenticated,
+  message_controller.message_get
+);
+router.post(
+  "/message",
+  // checkAuth.checkAuthenticated,
+  message_controller.message_post
+);
 
 module.exports = router;

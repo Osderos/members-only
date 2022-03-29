@@ -21,12 +21,12 @@ router.post(
 
 router.get(
   "/login",
-  checkAuth.checkNotAuthenticated,
+  // checkAuth.checkNotAuthenticated,
   authentication_controller.login_get
 );
 router.post(
   "/login",
-  checkAuth.checkNotAuthenticated,
+  // checkAuth.checkNotAuthenticated,
   authentication_controller.login_post
 );
 
@@ -36,11 +36,13 @@ router.get("/logout", authentication_controller.logout_get);
 //MEMBER
 router.get(
   "/member",
+  checkAuth.checkAuthenticated,
   checkAuth.checkMember,
   authentication_controller.member_get
 );
 router.post(
   "/member",
+  
   checkAuth.checkMember,
   authentication_controller.member_post
 );

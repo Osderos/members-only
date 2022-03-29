@@ -12,7 +12,9 @@
     <p>Hi there <%= user.username %></p>
     <% if(user.isMember){%>
     <p>You are a member!</p>
+    <a href="/message">Create new message</a>
     <% }else{ %>
+    <a href="/message">Create new message</a>
     <a href="/member">Become a member</a>
     <% } %>
 

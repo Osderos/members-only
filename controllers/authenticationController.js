@@ -100,12 +100,15 @@ exports.member_get = (req, res) => {
 };
 
 exports.member_post = [
-  body("answer").custom((value, { req }) => {
-    if (process.env.MEMBER_PASS != req.body.answer) {
-      throw new Error("Wrong anser, try again!");
-    }
-    return true;
-  }),
+  body("answer")
+    .isAlphanumeric()
+    .withMessage("Only letters")
+    .custom((value, { req }) => {
+      if (process.env.MEMBER_PASS != req.body.answer) {
+        throw new Error("Wrong answer, try again!");
+      }
+      return true;
+    }),
 
   (req, res, next) => {
     console.log(res.locals.currentUser);
