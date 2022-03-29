@@ -27,8 +27,6 @@ exports.message_post = [
       date: req.body.date,
     });
 
-    console.log(message);
-
     if (!errors.isEmpty()) {
       res.render("message_form", {
         title: "New Message",
@@ -40,7 +38,7 @@ exports.message_post = [
         if (err) {
           return next(err);
         }
-        res.redirect("/");
+        res.redirect("index", {message:message});
       });
     }
   },

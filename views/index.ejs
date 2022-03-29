@@ -26,5 +26,16 @@
     <a href="/login">Login</a>
 
     <% } %>
+
+    <div>
+      <% messages.forEach(message=>{ %>
+      <div>
+        <h1><%= message.title %></h1>
+        <span><%= message.user.username %> </span>
+        <span><%= message.date_formated %> </span>
+        <p><%= message.text %></p>
+      </div>
+      <% }) %>
+    </div>
   </body>
 </html>
