@@ -10,6 +10,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user");
 const flash = require("express-flash"); //to prompt login  error messages
+const bcrypt = require("bcryptjs");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -36,7 +37,13 @@ passport.use(
         return done(null, false, { message: "Incorrect username" });
       }
       if (user.password !== password) {
-        return done(null, false, { message: "Incorrect password" });
+        bcrypt.compare(password, user.password, (err, result) => {
+          if (result) {
+            return done(null, user);
+          } else {
+            return done(null, false, { message: "Incorrect password" });
+          }
+        });
       }
       return done(null, user);
     });
@@ -79,9 +86,6 @@ app.use(function (req, res, next) {
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/", authRouter);
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

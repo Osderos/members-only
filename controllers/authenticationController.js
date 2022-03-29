@@ -1,5 +1,6 @@
 const { body, validationResult } = require("express-validator");
 const passport = require("passport");
+const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 
 exports.signup_get = (req, res) => {
@@ -30,46 +31,50 @@ exports.signup_post = [
     return true;
   }),
 
-  (req, res, next) => {
+  async (req, res, next) => {
     const errors = validationResult(req);
-    console.log(errors);
-
-    const user = new User({
-      firstname: req.body.firstname,
-      familyname: req.body.familyname,
-      username: req.body.username,
-      password: req.body.password,
-    });
-
-    if (!errors.isEmpty()) {
-      res.render("signup_form", {
-        title: "Sign Up",
-        user: user,
-        errors: errors.array(),
+    try {
+      const hash = await bcrypt.hash(req.body.password, 10);
+      const user = new User({
+        firstname: req.body.firstname,
+        familyname: req.body.familyname,
+        username: req.body.username,
+        password: hash,
       });
-      return;
-    } else {
-      User.findOne({ username: req.body.username }).exec(function (
-        err,
-        found_username
-      ) {
-        if (err) {
-          return next(err);
-        }
-        if (found_username) {
-          res.render("signup_form", {
-            title: "Sign Up",
-            error: "Username already taken",
-          });
-        } else {
-          user.save(function (err) {
-            if (err) {
-              return next(err);
-            }
-            res.redirect("/");
-          });
-        }
-      });
+
+      if (!errors.isEmpty()) {
+        res.render("signup_form", {
+          title: "Sign Up",
+          user: user,
+          errors: errors.array(),
+        });
+        return;
+      } else {
+        User.findOne({ username: req.body.username }).exec(function (
+          err,
+          found_username
+        ) {
+          if (err) {
+            return next(err);
+          }
+          if (found_username) {
+            res.render("signup_form", {
+              title: "Sign Up",
+              error: "Username already taken",
+            });
+          } else {
+            user.save(function (err) {
+              if (err) {
+                return next(err);
+              }
+              res.redirect("/");
+            });
+          }
+        });
+      }
+    } catch (err) {
+      console.log(err);
+      err.status(500).send("Something broke!");
     }
   },
 ];
