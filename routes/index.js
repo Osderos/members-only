@@ -19,4 +19,6 @@ router.post(
   message_controller.message_post
 );
 
+router.post("/", message_controller.message_delete_post);
+
 module.exports = router;

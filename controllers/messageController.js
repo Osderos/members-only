@@ -5,7 +5,7 @@ const User = require("../models/user");
 
 exports.index = async (req, res, next) => {
   try {
-    const messages = await Message.find({}).sort({ date: 1 }).populate('user');
+    const messages = await Message.find({}).sort({ date: 1 }).populate("user");
     if (!messages) {
       return next("No messages found");
     }
@@ -57,5 +57,18 @@ exports.message_post = [
         res.redirect("/");
       });
     }
+  },
+];
+
+exports.message_delete_post = [
+  body("id").trim(),
+  (req, res, next) => {
+    console.log(req.body);
+    Message.findByIdAndRemove(req.body.id, function (err) {
+      if (err) {
+        return next(err);
+      }
+      res.redirect("/");
+    });
   },
 ];

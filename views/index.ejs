@@ -19,6 +19,14 @@
         <p><%= message.text %></p>
         <span>Posted by: <%= message.user.username %> </span>
         <span>On: <%= message.date_formated %> </span>
+        <% if(user.isAdmin){ %>
+        <div>
+          <form action="" method="POST">
+            <input type="hidden" name="id" id="id" value="<%=message._id %> " />
+            <button type="submit">Delete Message</button>
+          </form>
+        </div>
+        <% } %>
       </div>
       <% }) %>
     </div>
@@ -37,7 +45,12 @@
         <span>Posted by: Private</span>
         <span>On: Private </span>
         <% if(user.isAdmin){ %>
-        <p>ADMIN</p>
+        <div>
+          <form action="" method="POST">
+            <input type="hidden" name="id" id="id" value="<%=message._id %> " />
+            <button type="submit">Delete Message</button>
+          </form>
+        </div>
         <% } %>
       </div>
       <% }) %>
