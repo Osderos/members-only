@@ -1,11 +1,8 @@
 
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  <%- include('partials/header')%> 
+
 
     <% if(user && user.isMember){ %>
-    <p>Member</p>
-    <a href="/message">Create new message</a>
-    <a href="/logout">Logout</a>
     <div>
       <% messages.forEach(message=>{ %>
       <div>
@@ -25,17 +22,13 @@
       </div>
       <% }) %>
     </div>
+
     <% }else if(user && !user.isMember){ %>
-    <p>Hi there <%= user.username %></p>
-    <a href="/message">Create new message</a>
-    <a href="/member">Become a member</a>
-    <a href="/logout">Logout</a>
 
     <div>
       <% messages.forEach(message=>{ %>
       <div>
         <h1><%= message.title %></h1>
-
         <p><%= message.text %></p>
         <img src="<%= message.user.avatar %> " alt="<%= message.user.avatar %>">
         <span>Posted by: Private</span>
@@ -52,8 +45,6 @@
       <% }) %>
     </div>
     <% }else{ %>
-    <a href="/signup">Signup</a>
-    <a href="/login">Login</a>
     <div>
       <% messages.forEach(message=>{ %>
       <div>

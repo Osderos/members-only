@@ -1,0 +1,25 @@
+<header>
+  <h1><%= title %></h1>
+  <% if(user && user.isMember){ %>
+  <div>
+    <p class="memberColor">Status : Member</p>
+    <p class="memberColor">Loged as: <%= user.username %></p>
+    <a href="/message">Create new message</a>
+    <a href="/logout">Logout</a>
+  </div>
+  <% }else if(user && !user.isMember){ %>
+  <div>
+    <p class="userColor">Status : User</p>
+    <p class="userColor">Loged as: <%= user.username %></p>
+    <a href="/message">Create new message</a>
+    <a href="/member">Become a member</a>
+    <a href="/logout">Logout</a>
+  </div>
+  <% }else{ %>
+  <div>
+    <p class="guestColor">Status : Guest</p>
+    <a href="/signup">Signup</a>
+    <a href="/login">Login</a>
+  </div>
+  <% } %>
+</header>

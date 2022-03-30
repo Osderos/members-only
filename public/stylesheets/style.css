@@ -1,0 +1,72 @@
+/* GENERAL */
+a {
+  text-decoration: none;
+  color: black;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: #e63946;
+  text-decoration: underline;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Caveat", cursive;
+  background-color: #a8dadc;
+  box-shadow: 0px 5px 5px gray;
+}
+
+header > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  gap: 10px;
+  margin: 5px 50px 5px 5px;
+}
+
+header > h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin: 5px 5px 5px 50px;
+}
+
+header > div > p {
+  margin: 0;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #f1faee;
+}
+
+@media screen and (max-width: 850px) {
+  header {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:5px;
+  }
+
+  header > div {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:0;
+  }
+
+  header > h1 {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:0;
+  }
+}
