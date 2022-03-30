@@ -1,29 +1,21 @@
-exports.checkNotAuthenticated = function (req, res, next) {
-  if (req.isAuthenticated()) {
-    res.redirect("/");
+exports.checkIsMember = function (req, res, next) {
+  if (req.user.isMember) {
+    next()
   }
-  next();
+  res.redirect('/')
 };
 
-//if guest then redirect home if trying to acces not related routes , i.e /member
-exports.checkAuthenticated = function (req, res, next) {
-  if (req.isAuthenticated()) {
+exports.checkIsNotMember = function (req, res, next) {
+  if (req.user.isMember) {
+    res.redirect('/')
+  }
+  next()
+};
+
+
+exports.checkIsLoggedIn = function (req, res, next) {
+  if (req.user) {
     next();
   }
-  res.redirect("/");
-};
-
-// if member than redirect to home if member route is accesed
-exports.checkMember = function (req, res, next) {
-  if (res.locals.currentUser.isMember) {
-    res.redirect("/");
-  }
-  next();
-};
-
-exports.checkNotMember = function (req, res, next) {
-  if (req.isAuthenticated() && res.locals.currentUser.isMember) {
-    next();
-  }
-  res.redirect("/");
+  res.redirect("/login");
 };

@@ -1,6 +1,6 @@
 <h1><%=title %></h1>
 <div>
-  <form action="" method="POST">
+  <form action="/signup" method="POST">
     <div>
       <label for="firstname">First Name:</label>
       <input
@@ -41,7 +41,38 @@
     </div>
     <div>
       <label for="admin">Is Admin?:</label>
-      <input type="checkbox" id="admin" name="admin" >
+      <input type="checkbox" id="admin" name="admin" />
+    </div>
+    <div>
+      <p>Choose an avatar:</p>
+
+      <label class="avatars">
+        <input
+          type="radio"
+          id="avatar1"
+          value="./images/avatar1.png"
+          name="avatar"
+        />
+        <img src="./images/avatar1.png" alt="avatar1" />
+      </label>
+      <label class="avatars">
+        <input
+          type="radio"
+          id="avatar2"
+          value="./images/avatar2.png"
+          name="avatar"
+        />
+        <img src="./images/avatar2.png" alt="avatar2" />
+      </label>
+      <label class="avatars">
+        <input
+          type="radio"
+          id="avatar3"
+          value="./images/avatar3.png"
+          name="avatar"
+        />
+        <img src="./images/avatar3.png" alt="avatar3" />
+      </label>
     </div>
     <button type="submit">Signup</button>
     <a href="/"><button type="button">Cancel</button></a>

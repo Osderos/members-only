@@ -10,12 +10,12 @@ router.get("/", message_controller.index);
 // MESSAGE ROUTES
 router.get(
   "/message",
-  // checkAuth.checkAuthenticated,
+  // checkAuth.checkIsLoggedIn,
   message_controller.message_get
 );
 router.post(
   "/message",
-  // checkAuth.checkAuthenticated,
+  // checkAuth.checkIsLoggedIn,
   message_controller.message_post
 );
 

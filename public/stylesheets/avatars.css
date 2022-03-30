@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+.avatars > input {
+  display: none;
+}
+
+.avatars > input + img {
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.avatars > input:checked + img {
+  border: 2px solid red;
+}
+
+img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}

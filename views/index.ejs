@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
-  <body>
+
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
 
@@ -16,6 +10,7 @@
       <% messages.forEach(message=>{ %>
       <div>
         <h1><%= message.title %></h1>
+        <img src="<%= message.user.avatar %> " alt="<%= message.user.avatar %>">
         <p><%= message.text %></p>
         <span>Posted by: <%= message.user.username %> </span>
         <span>On: <%= message.date_formated %> </span>
@@ -42,6 +37,7 @@
         <h1><%= message.title %></h1>
 
         <p><%= message.text %></p>
+        <img src="<%= message.user.avatar %> " alt="<%= message.user.avatar %>">
         <span>Posted by: Private</span>
         <span>On: Private </span>
         <% if(user.isAdmin){ %>
@@ -63,11 +59,11 @@
       <div>
         <h1><%= message.title %></h1>
         <p><%= message.text %></p>
+        <img src="<%= message.user.avatar %> " alt="<%= message.user.avatar %>">
         <span>Posted by: Private</span>
         <span>On: Private </span>
       </div>
       <% }) %>
     </div>
     <% } %>
-  </body>
-</html>
+

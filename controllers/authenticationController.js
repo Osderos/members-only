@@ -45,6 +45,7 @@ exports.signup_post = [
         username: req.body.username,
         password: hash,
         isAdmin: admin,
+        avatar:req.body.avatar
       });
       console.log(user);
       if (!errors.isEmpty()) {

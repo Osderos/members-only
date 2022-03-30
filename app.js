@@ -11,6 +11,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user");
 const flash = require("express-flash"); //to prompt login  error messages
 const bcrypt = require("bcryptjs");
+const expressLayouts=require('express-ejs-layouts')
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -68,6 +69,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(expressLayouts)
 
 app.use(function (req, res, next) {
   res.locals.currentUser = req.user;

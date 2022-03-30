@@ -36,14 +36,13 @@ router.get("/logout", authentication_controller.logout_get);
 //MEMBER
 router.get(
   "/member",
-  // checkAuth.checkAuthenticated,
-  // checkAuth.checkMember,
+  // checkAuth.checkIsLoggedIn,
   authentication_controller.member_get
 );
 router.post(
   "/member",
   
-  // checkAuth.checkMember,
+  // checkAuth.checkIsLoggedIn,
   authentication_controller.member_post
 );
 
