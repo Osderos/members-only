@@ -26,6 +26,7 @@ app.use(helmet())
 
 const dev_db_url = process.env.DB;
 var mongoDB = process.env.MONGODB_URI || dev_db_url;
+
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error"));
@@ -58,14 +59,16 @@ passport.deserializeUser(function (id, done) {
   });
 });
 
-app.use(flash());
+
 app.use(
   session({
+    cookie: { maxAge: 60000 },
     secret: process.env.SESSION_PASS,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
   })
 );
+app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
