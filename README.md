@@ -1,6 +1,6 @@
 # Members Only App
 
-Preview -> [Check it out]()
+Preview -> [Check it out](https://membersonly-osderos.herokuapp.com/)
 
 ## Summary :
 In the members only app i have applied the user authentification with PassportJS. The app opens with the main page that displays all the members posts. The visitor can see the message title and content but has to sign-up or login in to post a message. After user logs in it is possible to become a member by answering a riddle. Members can see who posted the messages and at what date. It is also possible for the user to pick admin right when signing up. Admin rights allow the user to delete posts.
