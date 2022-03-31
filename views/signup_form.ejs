@@ -1,49 +1,51 @@
-<h1><%=title %></h1>
-<div>
+<%- include('partials/headerSimple')%>
+
+
+<div class="formContainer">
   <form action="/signup" method="POST">
-    <div>
+    <div class="formItem">
       <label for="firstname">First Name:</label>
       <input
         type="text"
         id="firstname"
         name="firstname"
-        value="<% typeof user == 'undefined'? '': user.firstname%>"
+        
       />
     </div>
-    <div>
+    <div class="formItem">
       <label for="familyname">Family Name:</label>
       <input
         type="text"
         id="familyname"
         name="familyname"
-        value="<% typeof user == 'undefined'? '': user.familyname%>"
+        
       />
     </div>
-    <div>
+    <div class="formItem">
       <label for="username">User Name:</label>
       <input
         type="text"
         id="username"
         name="username"
-        value="<% typeof user == 'undefined'? '': user.username%>"
+        
       />
       <% if (typeof error != 'undefined'){ %>
       <p><%= error %></p>
       <% } %>
-    </div>
-    <div>
+    </div >
+    <div class="formItem">
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" />
     </div>
-    <div>
+    <div class="formItem">
       <label for="passwordConfirm">Confirm Password:</label>
       <input type="password" id="passwordConfirm" name="passwordConfirm" />
     </div>
-    <div>
+    <div class="formItem">
       <label for="admin">Is Admin?:</label>
       <input type="checkbox" id="admin" name="admin" />
     </div>
-    <div>
+    <div class="formItemAvatar">
       <p>Choose an avatar:</p>
 
       <label class="avatars">
@@ -74,15 +76,19 @@
         <img src="./images/avatar3.png" alt="avatar3" />
       </label>
     </div>
-    <button type="submit">Signup</button>
-    <a href="/"><button type="button">Cancel</button></a>
+    <div class="formItem">
+      <button type="submit" class="normalBtn">Signup</button>
+      <a href="/"><button type="button" class="normalBtn">Cancel</button></a>
+    </div>
+
   </form>
+  <% if(typeof errors !='undefined'){ %>
+    <div>
+      <% errors.forEach(err=>{%>
+      <p class="errorText"><%=err.msg %></p>
+      <% }) %>
+    </div>
+    <% } %>
 </div>
 
-<% if(typeof errors !='undefined'){ %>
-<div>
-  <% errors.forEach(err=>{%>
-  <p><%=err.msg %></p>
-  <% }) %>
-</div>
-<% } %>
+

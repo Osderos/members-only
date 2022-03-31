@@ -10,6 +10,32 @@ a:hover {
   text-decoration: underline;
 }
 
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5);
+}
+
+/* FOOTER */
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: "Boogaloo", cursive;
+  background-color: #a8dadc;
+  box-shadow: 0px 5px 5px gray;
+  gap: 15px;
+  font-size: 16px;
+  margin-top:auto;
+}
+
+footer > p {
+  margin: 5px 5px 5px 20px;
+}
+
 /* HEADER */
 header {
   display: flex;
@@ -45,6 +71,15 @@ header > div > p {
 @media screen and (max-width: 850px) {
   header {
     flex-direction: column;
+    padding: 10px;
+  }
+
+  header > div {
+    margin: 0;
+  }
+
+  header > h1 {
+    margin: 0;
   }
 }
 
@@ -53,20 +88,24 @@ header > div > p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding:5px;
+    padding: 5px;
   }
 
   header > div {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin:0;
+    margin: 0;
   }
 
   header > h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin:0;
+    margin: 0;
+  }
+
+  footer{
+    width: 100%;
   }
 }

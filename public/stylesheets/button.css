@@ -1,0 +1,29 @@
+.normalBtn {
+  background-color: #f1faee;
+  color: #e63946;
+  font-size: 24px;
+  margin: 5px;
+  padding: 5px;
+  border: 0;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+}
+
+.normalBtn:hover {
+  transform: translateY(-3px);
+  cursor: pointer;
+}
+
+.deleteBtn {
+  background-color: #e63946;
+  color: #f1faee;
+  border: 0;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+  padding: 2px;
+}
+
+.deleteBtn:hover {
+  transform: translateY(-3px);
+  cursor: pointer;
+}

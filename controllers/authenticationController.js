@@ -5,7 +5,7 @@ require("dotenv").config();
 const User = require("../models/user");
 
 exports.signup_get = (req, res) => {
-  res.render("signup_form", { title: "Sign Up" });
+  res.render("signup_form", { title: "Sign Up", user: req.user });
 };
 
 exports.signup_post = [
@@ -45,7 +45,7 @@ exports.signup_post = [
         username: req.body.username,
         password: hash,
         isAdmin: admin,
-        avatar:req.body.avatar
+        avatar: req.body.avatar,
       });
       console.log(user);
       if (!errors.isEmpty()) {
@@ -69,6 +69,7 @@ exports.signup_post = [
               error: "Username already taken",
             });
           } else {
+            user.isValid = true;
             user.save(function (err) {
               if (err) {
                 return next(err);

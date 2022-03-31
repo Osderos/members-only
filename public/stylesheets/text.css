@@ -9,3 +9,7 @@
 .guestColor {
   color: black;
 }
+
+.errorText{
+  color: red;
+}

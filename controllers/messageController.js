@@ -31,6 +31,8 @@ exports.message_post = [
   body("userMessage")
     .isLength({ min: 3 })
     .withMessage("Message should be at least 3 caracters long")
+    .isLength({ max: 50 })
+    .withMessage("Message must be shorter than 50 caracters")
     .trim(),
 
   (req, res, next) => {
